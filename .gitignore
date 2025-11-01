@@ -1,0 +1,15 @@
+mlvenv/
+mlvenv/**
+# Ignore large downloaded files and model artifacts
+data/
+data/**
+results/
+results/**
+*.csv
+*.safetensors
+*.pt
+*.pth
+*.gz
+*.pkl
+
+
