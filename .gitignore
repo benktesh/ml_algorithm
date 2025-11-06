@@ -11,6 +11,8 @@ logs/
 logs/**
 logs*/
 logs*/**
+output/
+output/**
 *.csv
 *.safetensors
 *.pt
