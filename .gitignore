@@ -5,6 +5,12 @@ data/
 data/**
 results/
 results/**
+results*/
+results*/**
+logs/
+logs/**
+logs*/
+logs*/**
 *.csv
 *.safetensors
 *.pt
@@ -13,3 +19,4 @@ results/**
 *.pkl
 
 
+traditional_finetuned_model/vocab.txt
