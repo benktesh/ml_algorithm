@@ -1,0 +1,22 @@
+{
+    "slow_internet": {
+        "symptom": "My internet is slow.",
+        "solution": "Restart your router and check your connection settings."
+    },
+    "software_crash": {
+        "symptom": "The application keeps crashing.",
+        "solution": "Update the application and restart your computer."
+    },
+    "no_sound": {
+        "symptom": "No sound is coming from my speakers.",
+        "solution": "Check if the speakers are connected and not muted."
+    },
+    "printer_not_working": {
+        "symptom": "The printer is not working.",
+        "solution": "Ensure the printer is connected and check for paper jams."
+    },
+    "device_not_charging": {
+        "symptom": "My device is not charging.",
+        "solution": "Check if the charger is properly connected and working."
+    }
+}
