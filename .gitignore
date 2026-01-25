@@ -22,3 +22,4 @@ output/**
 
 
 traditional_finetuned_model/vocab.txt
+LangChainFundamental/.env
