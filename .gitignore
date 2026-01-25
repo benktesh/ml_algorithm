@@ -1,5 +1,23 @@
 mlvenv/
 mlvenv/**
+
+# Environment variables - ignore ALL .env files everywhere
+.env
+.env.*
+**/.env
+**/.env.*
+*.env
+
+# ChromaDB database
+chroma_db/
+chroma_db/**
+
+# Python cache and testing
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+
 # Ignore large downloaded files and model artifacts
 data/
 data/**
@@ -22,4 +40,3 @@ output/**
 
 
 traditional_finetuned_model/vocab.txt
-LangChainFundamental/.env
