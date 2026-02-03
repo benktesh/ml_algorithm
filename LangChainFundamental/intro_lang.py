@@ -3,8 +3,6 @@ from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
-from langchain.memory import ConversationBufferMemory
-from langchain.chains import LLMChain, ConversationChain
 import os
 from dotenv import load_dotenv
 
@@ -25,7 +23,7 @@ def create_chat_model():
         api_key=AZURE_OPENAI_API_KEY,
         api_version=AZURE_OPENAI_API_VERSION,
         deployment_name=AZURE_DEPLOYMENT_NAME,
-        temperature=0.7,
+        # GPT-5 Nano only supports default temperature (1)
     )
     return model
 
@@ -76,28 +74,31 @@ def simple_chain_example():
     return result
 
 
-def conversation_chain_example():
-    """Using Conversation Chain with Memory"""
-    print("Using Conversation Chain with Memory")
+def conversation_with_history_example():
+    """Multi-turn conversation using message history"""
+    print("Using Message History")
     
     model = create_chat_model()
     
-    # Create conversation chain with memory
-    conversation = ConversationChain(
-        llm=model,
-        verbose=True,
-        memory=ConversationBufferMemory()
-    )
+    # Manually manage conversation history
+    messages = [
+        SystemMessage(content="You are a helpful AI assistant."),
+        HumanMessage(content="Hi, my name is Alice and I love Python programming."),
+    ]
     
-    # First interaction
-    response1 = conversation.predict(input="Hi, my name is Alice and I love Python programming.")
-    print(f"Response 1: {response1}\n")
+    # First response
+    response = model.invoke(messages)
+    print(f"Response 1: {response.content}\n")
+    
+    # Add to history
+    messages.append(response)
     
     # Second interaction - should remember the name
-    response2 = conversation.predict(input="What's my name and what do I love?")
-    print(f"Response 2: {response2}\n")
+    messages.append(HumanMessage(content="What's my name and what do I love?"))
+    response = model.invoke(messages)
+    print(f"Response 2: {response.content}\n")
     
-    return conversation
+    return messages
 
 
 def sequential_chain_example():
@@ -224,9 +225,9 @@ if __name__ == "__main__":
     print("2. " + "=" * 66)
     simple_chain_example()
     
-    # Example 3: Conversation Chain with Memory
+    # Example 3: Conversation with History
     print("3. " + "=" * 66)
-    conversation_chain_example()
+    conversation_with_history_example()
     
     # Example 4: Sequential Chain
     print("4. " + "=" * 66)
