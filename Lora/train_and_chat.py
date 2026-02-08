@@ -56,7 +56,7 @@ class ModelTrainer:
         self.device = get_device()
         self.model_checkpoint = "distilbert-base-uncased"
         self.output_dir = get_save_path("checkpoints")
-        self.final_model_dir = get_save_path("lora-sentiment-improved")
+        self.final_model_dir = get_save_path("Lora/lora-sentiment-improved")
         self.metrics = ModelMetrics()
 
         # Create directories if they don't exist
@@ -291,14 +291,14 @@ class ModelInterface:
             print("Loading models and tokenizer...")
             self.tokenizer = AutoTokenizer.from_pretrained(self.model_checkpoint)
 
-            if os.path.exists("./lora-sentiment-improved"):
+            if os.path.exists("./Lora/lora-sentiment-improved"):
                 base_model_sentiment = (
                     AutoModelForSequenceClassification.from_pretrained(
                         self.model_checkpoint, num_labels=2
                     )
                 )
                 self.sentiment_model = PeftModel.from_pretrained(
-                    base_model_sentiment, "./lora-sentiment-improved"
+                    base_model_sentiment, "./Lora/lora-sentiment-improved"
                 )
                 self.sentiment_model.eval()
                 self.sentiment_model.to(self.device)

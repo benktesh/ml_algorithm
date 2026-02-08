@@ -41,6 +41,6 @@ output/**
 
 traditional_finetuned_model/vocab.txt
 checkpoints/**
-lora-sentiment/**
-lora-topic/**
-lora-sentiment-improved/**
+Lora/lora-sentiment/**
+Lora/lora-topic/**
+Lora/lora-sentiment-improved/**

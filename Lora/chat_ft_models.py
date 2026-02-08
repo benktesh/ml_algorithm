@@ -22,14 +22,14 @@ class ModelInterface:
             self.tokenizer = AutoTokenizer.from_pretrained(self.model_checkpoint)
 
             # Load sentiment model
-            if os.path.exists("./lora-sentiment"):
+            if os.path.exists("./Lora/lora-sentiment"):
                 base_model_sentiment = (
                     AutoModelForSequenceClassification.from_pretrained(
                         self.model_checkpoint, num_labels=2
                     )
                 )
                 self.sentiment_model = PeftModel.from_pretrained(
-                    base_model_sentiment, "./lora-sentiment"
+                    base_model_sentiment, "./Lora/lora-sentiment"
                 )
                 self.sentiment_model.eval()
             else:
@@ -38,12 +38,12 @@ class ModelInterface:
                 )
 
             # Load topic model
-            if os.path.exists("./lora-topic"):
+            if os.path.exists("./Lora/lora-topic"):
                 base_model_topic = AutoModelForSequenceClassification.from_pretrained(
                     self.model_checkpoint, num_labels=4
                 )
                 self.topic_model = PeftModel.from_pretrained(
-                    base_model_topic, "./lora-topic"
+                    base_model_topic, "./Lora/lora-topic"
                 )
                 self.topic_model.eval()
             else:

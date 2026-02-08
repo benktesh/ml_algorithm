@@ -37,8 +37,8 @@ class ModelService:
     def __init__(self):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model_checkpoint = "distilbert-base-uncased"
-        # self.model_path = "./lora-sentiment-improved"
-        self.model_path = "./lora-sentiment"
+        # self.model_path = "./Lora/lora-sentiment-improved"
+        self.model_path = "./Lora/lora-sentiment"
         self.tokenizer = None
         self.model = None
         self.load_model()
